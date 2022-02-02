@@ -44,24 +44,20 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-			//code to display text as response
-		 	response.setContentType("text/html");
+	      response.setContentType("text/html");
 	        PrintWriter out = response.getWriter();
 	 
-	        //get the data from the register.jsp
-	        String n = request.getParameter("userName");
+	        String n = request.getParameter("name");
 	        String p = request.getParameter("password");
 	        String e = request.getParameter("email");
 	        String c = request.getParameter("language");
-	 
+
 	        try {
-	            Class.forName("com.mysql.jdbc.Driver");
-	            Connection con = DriverManager.getConnection(
-	                    "jdbc:mysql://localhost:3306/testing", "root", ""); //use drive manager class from the sql connector depedenciy
-	            								//testing is database name, "root" is default user, "" is blank password
-	            PreparedStatement ps = con
-	                    .prepareStatement("insert into USERDETAILS2 values(?,?,?,?)");
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3308/testing", "root", "");
 	 
+	            PreparedStatement ps = con.prepareStatement("insert into USER (USERNAME,PASSWORD,EMAIL,LANGUAGE) values(?,?,?,?)");
+
 	            ps.setString(1, n);
 	            ps.setString(2, p);
 	            ps.setString(3, e);
@@ -69,14 +65,16 @@ public class RegisterServlet extends HttpServlet {
 	 
 	            int i = ps.executeUpdate();
 	            if (i > 0)
-	                out.print("You are successfully registered... <button onclick=\"window.location.href='http://localhost:8085/lesson14/register.jsp';\"> Click to go to user registration </button>" ); //print out this message as response
+	                out.print("You are successfully registered...");
 	 
 	        } catch (Exception e2) {
 	            System.out.println(e2);
 	        }
 	 
 	        out.close();
-		
+
+	
+
 	}
 
 }

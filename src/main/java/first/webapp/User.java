@@ -1,23 +1,28 @@
 package first.webapp;
 
 public class User {
-    protected String name;
-    protected String password;
-    protected String email;
-    protected String language;
 
+    public String name;
+    public String password;
+    public String email;
+    public String language;
+    public int id;
+ 
     public User() {}
 
-    
-    public User(String name, String password, String email, String language) {
+    public User(int id, String name, String password, String email, String language) {
         super();
         this.name = name;
         this.password = password;
         this.email = email;
         this.language = language;
+        this.id = id;
     }
-
-
+    
+    public int getId() {
+        return id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -42,4 +47,6 @@ public class User {
     public void setLanguage(String language) {
         this.language = language;
     }
+
+
 }
