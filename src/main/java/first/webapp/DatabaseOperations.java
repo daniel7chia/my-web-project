@@ -55,11 +55,12 @@ public class DatabaseOperations {
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
+            	int userid = rs.getInt(1);
                 String name = rs.getString("name");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String language = rs.getString("language");
-                users.add(new User(name, password, email, language));
+                users.add(new User(userid, name, password, email, language));
                 System.out.println(name);
             }
         } catch (SQLException e) {
